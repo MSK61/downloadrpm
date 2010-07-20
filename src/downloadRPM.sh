@@ -29,6 +29,7 @@
 #
 # environment:  Kate 3.3.3, python 2.5.2, Fedora release 10 (Cambridge)
 #               Emacs 22.3.1, python 2.5.2, Fedora release 10 (Cambridge)
+#               VIM 7.2, python 2.5.2, Fedora release 10 (Cambridge)
 #
 # notes:        This is a private program.
 #
@@ -37,5 +38,5 @@ repoFile=$1
 rpmListFile=$2
 shift 2
 urlListFile=list.txt
-./makeRecipe.py -r $repoFile -o $urlListFile $rpmListFile &&
-    aria2c -m0 -i$urlListFile "$@"
+"$(dirname "$0")"/makeRecipe.py -r "$repoFile" -o $urlListFile \
+    "$rpmListFile" && aria2c -m0 -i$urlListFile "$@" && rm $urlListFile
