@@ -1,2 +1,3 @@
-updates http://mirrors.ispros.com.bd/fedora/updates/13/x86_64
+updates http://mirrors.ispros.com.bd/fedora/updates/13/x86_64 http://ftp.ntua.gr/pub/linux/fedora/linux/updates/13/x86_64
+updates http://fedora.mirror.garr.it/mirrors/fedora/linux/updates/13/x86_64
 rpmfusion-nonfree-updates http://download1.rpmfusion.org/nonfree/fedora/updates/13/x86_64

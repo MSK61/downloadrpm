@@ -46,7 +46,7 @@ Usage: makeRecipe.py -r REPOFILE -o URLFILE QUEUEFILE
 
 from __future__ import with_statement
 import logging
-from logging import info
+from logging import debug, info
 import os
 import re
 import sys
@@ -104,7 +104,7 @@ def main(argv=None):
     logging.basicConfig(level=logging.INFO)
     run(args[0], getattr(settings, _REPO_OPT_VAR),
         getattr(settings, _OUT_OPT_VAR))
-    return os.EX_OK        # success
+    return 0        # success
 
 
 def run(rpm_list_file, repo_file, out_file):
@@ -133,34 +133,50 @@ def run(rpm_list_file, repo_file, out_file):
     with open(repo_file) as repo_map_file:
         for line in repo_map_file:
 
-            repo_name, repo_url = line.splitlines()[0].split()
+            line = line.splitlines()[0]
 
-            # Make sure the URL ends in /.
-            if not repo_url.endswith(url_sep):
-                repo_url += url_sep
+            if line:  # Overlook empty lines.
 
-            logging.debug(
-                "Found repository %s at base URL %s", repo_name, repo_url)
-            repo_map[repo_name] = repo_url
+                # Remove end-of-line characters.
+                repo_info = line.split()
+                repo_urls = repo_info[1:]
+                debug("Found for repository %s URL's %s", repo_info[0],
+                    repo_urls)
+                # Don't drop old repository links(if any) and strip /
+                # from URL's.
+                repo_map.setdefault(repo_info[0], set()).update(
+                    [url.rstrip(url_sep) for url in repo_urls])
 
-    info("Finished reading repository mapping file %s, generating URL list from"
+            else:
+                debug("Empty line encountered!")
+
+    info("Finished reading repository mapping file %s, generating URL list "
         "from RPM list file %s...", repo_file, rpm_list_file)
     # Transform the rpm list file into a URL list.
+    link_sep = '\t'
     # URL part separators
     name_ver_sep = '-'
     ver_arch_sep = '.'
     # filter to identify rpm package version correctly
     ver_filter = re.compile("(?:\d+:)?(.+)")
-    file_ext = ".rpm" + os.linesep
+    file_ext = ".rpm"
     wrt_permit = 'w'
     res_file = open(out_file, wrt_permit) if out_file else sys.stdout
     with open(rpm_list_file) as rpm_list:
         for rpm_info in rpm_list:
 
-            name, arch, ver, repo = rpm_info.splitlines()[0].split()
-            res_file.write(
-                repo_map[repo] + name + name_ver_sep + ver_filter.match(
-                ver).group(1) + ver_arch_sep + arch + file_ext)
+            rpm_info = rpm_info.splitlines()[0]
+
+            if rpm_info:  # Overlook empty lines.
+
+                # Remove end-of-line characters.
+                name, arch, ver, repo = rpm_info.split()
+                res_file.write(link_sep.join([url + url_sep + name + name_ver_sep +
+                    ver_filter.match(ver).group(1) + ver_arch_sep + arch +
+                    file_ext for url in repo_map[repo]]) + os.linesep)
+
+            else:
+                debug("Empty line encountered!")
 
     if out_file:
         res_file.close()

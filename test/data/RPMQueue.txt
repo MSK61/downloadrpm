@@ -7,7 +7,9 @@ PackageKit-gtk-module                              x86_64               0.6.6-1.
 PackageKit-qt                                      x86_64               0.6.6-1.fc13                        updates
 PackageKit-yum                                     x86_64               0.6.6-1.fc13                        updates
 PackageKit-yum-plugin                              x86_64               0.6.6-1.fc13                        updates
+
 akmod-nvidia                                       x86_64               1:195.36.31-1.fc13                  rpmfusion-nonfree-updates
+
 avahi                                              x86_64               0.6.25-7.fc13                       updates
 avahi-autoipd                                      x86_64               0.6.25-7.fc13                       updates
 avahi-glib                                         x86_64               0.6.25-7.fc13                       updates
@@ -29,7 +31,9 @@ iputils                                            x86_64               20071127
 iwl6000-firmware                                   noarch               9.221.4.1-1.fc13                    updates
 jwhois                                             x86_64               4.0-20.fc13                         updates
 kernel-headers                                     x86_64               2.6.33.6-147.fc13                   updates
+
 kmod-nvidia-2.6.33.5-124.fc13.x86_64               x86_64               1:195.36.31-1.fc13                  rpmfusion-nonfree-updates
+
 lftp                                               x86_64               4.0.9-2.fc13                        updates
 libarchive                                         x86_64               2.8.4-1.fc13                        updates
 libcollection                                      x86_64               0.4.0-15.fc13                       updates
@@ -63,8 +67,10 @@ system-config-date                                 noarch               1.9.59-1
 system-config-services                             noarch               0.99.46-1.fc13                      updates
 tcp_wrappers                                       x86_64               7.6-59.fc13                         updates
 tcp_wrappers-libs                                  x86_64               7.6-59.fc13                         updates
+
 xorg-x11-drv-nvidia                                x86_64               1:195.36.31-2.fc13                  rpmfusion-nonfree-updates
 xorg-x11-drv-nvidia-libs                           x86_64               1:195.36.31-2.fc13                  rpmfusion-nonfree-updates
+
 xorg-x11-drv-vmmouse                               x86_64               12.6.9-4.fc13                       updates
 xorg-x11-server-Xorg                               x86_64               1.8.2-1.fc13                        updates
 xorg-x11-server-common                             x86_64               1.8.2-1.fc13                        updates
