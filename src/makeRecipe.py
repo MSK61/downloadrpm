@@ -145,7 +145,7 @@ def run(rpm_list_file, repo_file, out_file):
                 # Don't drop old repository links(if any) and strip /
                 # from URL's.
                 repo_map.setdefault(repo_info[0], set()).update(
-                    [url.rstrip(url_sep) for url in repo_urls])
+                    (url.rstrip(url_sep) for url in repo_urls))
 
             else:
                 debug("Empty line encountered!")
@@ -171,9 +171,10 @@ def run(rpm_list_file, repo_file, out_file):
 
                 # Remove end-of-line characters.
                 name, arch, ver, repo = rpm_info.split()
-                res_file.write(link_sep.join([url + url_sep + name + name_ver_sep +
-                    ver_filter.match(ver).group(1) + ver_arch_sep + arch +
-                    file_ext for url in repo_map[repo]]) + os.linesep)
+                ver = ver_filter.match(ver).group(1)
+                res_file.write(link_sep.join(
+                    (url + url_sep + name + name_ver_sep + ver + ver_arch_sep +
+                    arch + file_ext for url in repo_map[repo])) + os.linesep)
 
             else:
                 debug("Empty line encountered!")
