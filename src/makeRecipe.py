@@ -144,7 +144,7 @@ def run(rpm_list_file, repo_file, out_file):
                     repo_urls)
                 # Don't drop old repository links(if any) and strip /
                 # from URL's.
-                repo_map.setdefault(repo_info[0], set()).update(
+                repo_map.setdefault(repo_info[0], []).extend(
                     (url.rstrip(url_sep) for url in repo_urls))
 
             else:

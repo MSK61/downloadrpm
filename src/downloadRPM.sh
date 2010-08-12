@@ -39,4 +39,4 @@ rpmListFile=$2
 shift 2
 urlListFile=list.txt
 "$(dirname "$0")"/makeRecipe.py -r "$repoFile" -o $urlListFile \
-    "$rpmListFile" && aria2c -m0 -i$urlListFile "$@" && rm $urlListFile
+    "$rpmListFile" && aria2c -i$urlListFile "$@" && rm $urlListFile
