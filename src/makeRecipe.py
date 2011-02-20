@@ -4,12 +4,12 @@
 """
 creates a URL list for RPM packages to be downloaded from the given file
 
-Usage: makeRecipe.py -r REPOFILE -o URLFILE QUEUEFILE
+Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 """
 
 ############################################################
 #
-# Copyright 2010 Mohammed El-Afifi
+# Copyright 2010, 2011 Mohammed El-Afifi
 # This file is part of downloadRPM.
 #
 # downloadRPM is free software: you can redistribute it and/or modify
@@ -39,12 +39,12 @@ Usage: makeRecipe.py -r REPOFILE -o URLFILE QUEUEFILE
 #
 # environment:  KWrite 4.4.4, python 2.5.2, Fedora release 10 (Cambridge)
 #               Kate 3.3.3, python 2.5.2, Fedora release 10 (Cambridge)
+#               KWrite 4.5.5, python 2.7, Fedora release 14 (Laughlin)
 #
 # notes:        This is a private program.
 #
 ############################################################
 
-from __future__ import with_statement
 import logging
 from logging import debug, info
 import os
@@ -66,7 +66,7 @@ def process_command_line(argv):
         argv = sys.argv[1:]
 
     # initialize the parser object:
-    parser = optparse.OptionParser("%prog -r REPOFILE -o URLFILE QUEUEFILE",
+    parser = optparse.OptionParser("%prog -r REPOFILE [-o URLFILE] QUEUEFILE",
         formatter=optparse.TitledHelpFormatter(width=78),
         add_help_option=None)
 
@@ -125,7 +125,7 @@ def run(rpm_list_file, repo_file, out_file):
     # Parsing the repository-to-URL mapping file first in memory is
     # better since the map will be typically much smaller in size than
     # the number of packages. The other alternative would be to read the
-    # RPM package file, sotring all information of packages in memory
+    # RPM package file, storing all information of packages in memory
     # but RPM pacakge information would be large in that case.
     info("Reading repository mapping file %s...", repo_file)
     url_sep = '/'

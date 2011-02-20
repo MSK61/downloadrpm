@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ############################################################
 #
-# Copyright 2010 Mohammed El-Afifi
+# Copyright 2010, 2011 Mohammed El-Afifi
 # This file is part of downloadRPM.
 #
 # downloadRPM is free software: you can redistribute it and/or modify
@@ -27,9 +27,10 @@
 #
 # author:       Mohammed Safwat (MS)
 #
-# environment:  Kate 3.3.3, python 2.5.2, Fedora release 10 (Cambridge)
-#               Emacs 22.3.1, python 2.5.2, Fedora release 10 (Cambridge)
-#               VIM 7.2, python 2.5.2, Fedora release 10 (Cambridge)
+# environment:  Kate 3.3.3, Fedora release 10 (Cambridge)
+#               Emacs 22.3.1, Fedora release 10 (Cambridge)
+#               VIM 7.2, Fedora release 10 (Cambridge)
+#               KWrite 4.5.5, Fedora release 14 (Laughlin)
 #
 # notes:        This is a private program.
 #
