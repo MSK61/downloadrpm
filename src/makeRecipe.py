@@ -102,19 +102,16 @@ def process_command_line(argv):
 def main(argv=None):
     settings, args = process_command_line(argv)
     logging.basicConfig(level=logging.INFO)
-    run(args[0], getattr(settings, _REPO_OPT_VAR),
-        getattr(settings, _OUT_OPT_VAR))
+    run(args[0], settings)
     return 0        # success
 
 
-def run(rpm_list_file, repo_file, out_file):
+def run(rpm_list_file, settings):
     """Identify the installed packages from the input file.
 
     `rpm_list_file` is the file containing information about RPM
                     packages.
-    `repo_file` is the file containing the mapping between repositories
-                and base URL's.
-    `out_file` is the output file to dump the results into.
+    `settings` are the options for processing the input file.
     The function reads in the provided file containing RPM package
     information and generates a file containing the URL list of the RPM
     packages with the aid of the repository-to-URL map file. The results
@@ -127,6 +124,7 @@ def run(rpm_list_file, repo_file, out_file):
     # the number of packages. The other alternative would be to read the
     # RPM package file, storing all information of packages in memory
     # but RPM pacakge information would be large in that case.
+    repo_file = getattr(settings, _REPO_OPT_VAR)
     info("Reading repository mapping file %s...", repo_file)
     url_sep = '/'
     repo_map = {}
@@ -160,6 +158,7 @@ def run(rpm_list_file, repo_file, out_file):
     # filter to identify rpm package version correctly
     ver_filter = re.compile("(?:\d+:)?(.+)")
     file_ext = ".rpm"
+    out_file = getattr(settings, _OUT_OPT_VAR)
     wrt_permit = 'w'
     res_file = open(out_file, wrt_permit) if out_file else sys.stdout
     with open(rpm_list_file) as rpm_list:
