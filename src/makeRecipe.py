@@ -84,13 +84,13 @@ def process_command_line(argv):
     settings, args = parser.parse_args(argv)
 
     # check number of arguments:
-    mandatoryArgs = 1
-    extraArgs = len(args) - mandatoryArgs
+    mandatory_args = 1
+    extra_args = len(args) - mandatory_args
 
-    if extraArgs != 0:
+    if extra_args:
         parser.error('program takes exactly one RPM queue file; ' +
-                     (('"%s" ignored' % args[mandatoryArgs:]) if
-                     extraArgs > 0 else "none specified") + '.')
+                     (('"%s" ignored' % args[mandatory_args:]) if
+                     extra_args > 0 else "none specified") + '.')
 
     # further process settings
     # missing repository conversion file
