@@ -40,6 +40,7 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 # environment:  KWrite 4.4.4, python 2.5.2, Fedora release 10 (Cambridge)
 #               Kate 3.3.3, python 2.5.2, Fedora release 10 (Cambridge)
 #               KWrite 4.5.5, python 2.7, Fedora release 14 (Laughlin)
+#               KWrite 4.6.5, python 2.7.1, Fedora release 15 (Lovelock)
 #
 # notes:        This is a private program.
 #
@@ -89,7 +90,7 @@ def process_command_line(argv):
 
     if extra_args:
         parser.error('program takes exactly one RPM queue file; ' +
-                     (('"%s" ignored' % args[mandatory_args:]) if
+                     ('"{}" ignored'.format(args[mandatory_args:]) if
                      extra_args > 0 else "none specified") + '.')
 
     # further process settings
@@ -164,11 +165,11 @@ def run(rpm_list_file, settings):
     with open(rpm_list_file) as rpm_list:
         for rpm_info in rpm_list:
 
+            # Remove end-of-line characters.
             rpm_info = rpm_info.splitlines()[0]
 
             if rpm_info:  # Overlook empty lines.
 
-                # Remove end-of-line characters.
                 name, arch, ver, repo = rpm_info.split()
                 ver = ver_filter.match(ver).group(1)
                 res_file.write(link_sep.join(
