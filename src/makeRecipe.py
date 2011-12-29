@@ -41,6 +41,7 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 #               Kate 3.3.3, python 2.5.2, Fedora release 10 (Cambridge)
 #               KWrite 4.5.5, python 2.7, Fedora release 14 (Laughlin)
 #               KWrite 4.6.5, python 2.7.1, Fedora release 15 (Lovelock)
+#               KWrite 4.7.4, python 2.7.2, Fedora release 16 (Verne)
 #
 # notes:        This is a private program.
 #
@@ -89,9 +90,10 @@ def process_command_line(argv):
     extra_args = len(args) - mandatory_args
 
     if extra_args:
-        parser.error('program takes exactly one RPM queue file; ' +
-                     ('"{}" ignored'.format(args[mandatory_args:]) if
-                     extra_args > 0 else "none specified") + '.')
+        parser.error('program takes exactly one RPM queue file; '
+                     '{}.'.format(
+                     '"{}" ignored'.format(args[mandatory_args:]) if
+                     extra_args > 0 else "none specified"))
 
     # further process settings
     # missing repository conversion file
