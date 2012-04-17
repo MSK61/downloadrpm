@@ -9,7 +9,7 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 
 ############################################################
 #
-# Copyright 2010, 2011 Mohammed El-Afifi
+# Copyright 2010, 2011, 2012 Mohammed El-Afifi
 # This file is part of downloadRPM.
 #
 # downloadRPM is free software: you can redistribute it and/or modify
@@ -42,6 +42,7 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 #               KWrite 4.5.5, python 2.7, Fedora release 14 (Laughlin)
 #               KWrite 4.6.5, python 2.7.1, Fedora release 15 (Lovelock)
 #               KWrite 4.7.4, python 2.7.2, Fedora release 16 (Verne)
+#               KWrite 4.8.1, python 2.7.2, Fedora release 16 (Verne)
 #
 # notes:        This is a private program.
 #
@@ -124,9 +125,9 @@ def run(rpm_list_file, settings):
     # Process the repsitory mapping file.
     # Parsing the repository-to-URL mapping file first in memory is
     # better since the map will be typically much smaller in size than
-    # the number of packages. The other alternative would be to read the
-    # RPM package file, storing all information of packages in memory
-    # but RPM pacakge information would be large in that case.
+    # the number of packages.  The other alternative would be to read
+    # the RPM package file, storing all information of packages in
+    # memory but RPM pacakge information would be large in that case.
     repo_file = getattr(settings, _REPO_OPT_VAR)
     info("Reading repository mapping file %s...", repo_file)
     url_sep = '/'
