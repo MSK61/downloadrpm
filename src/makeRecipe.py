@@ -155,16 +155,16 @@ def run(rpm_list_file, settings):
     info("Finished reading repository mapping file %s, generating URL list "
         "from RPM list file %s...", repo_file, rpm_list_file)
     # Transform the rpm list file into a URL list.
+    # filter to identify rpm package version correctly
+    ver_filter = re.compile("(?:\d+:)?(.+)")
     link_sep = '\t'
     # URL part separators
     name_ver_sep = '-'
     ver_arch_sep = '.'
-    # filter to identify rpm package version correctly
-    ver_filter = re.compile("(?:\d+:)?(.+)")
-    file_ext = ".rpm"
     out_file = getattr(settings, _OUT_OPT_VAR)
     wrt_permit = 'w'
     res_file = open(out_file, wrt_permit) if out_file else sys.stdout
+    file_ext = ".rpm"
     with open(rpm_list_file) as rpm_list:
         for rpm_info in rpm_list:
 
