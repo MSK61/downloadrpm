@@ -175,8 +175,8 @@ def run(rpm_list_file, settings):
                 name, arch, ver, repo = rpm_info.split()
                 ver = ver_filter.match(ver).group(1)
                 res_file.write(link_sep.join(
-                    (url + url_sep + name + name_ver_sep + ver + ver_arch_sep +
-                    arch + file_ext for url in repo_map[repo])) + '\n')
+                    url + url_sep + name + name_ver_sep + ver + ver_arch_sep +
+                    arch + file_ext for url in repo_map[repo]) + '\n')
 
             else:
                 debug("Empty line encountered!")
