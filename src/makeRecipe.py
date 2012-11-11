@@ -50,7 +50,6 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 
 import logging
 from logging import debug, info
-import os
 import re
 import sys
 import optparse
@@ -177,7 +176,7 @@ def run(rpm_list_file, settings):
                 ver = ver_filter.match(ver).group(1)
                 res_file.write(link_sep.join(
                     (url + url_sep + name + name_ver_sep + ver + ver_arch_sep +
-                    arch + file_ext for url in repo_map[repo])) + os.linesep)
+                    arch + file_ext for url in repo_map[repo])) + '\n')
 
             else:
                 debug("Empty line encountered!")
