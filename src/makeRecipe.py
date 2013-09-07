@@ -9,7 +9,7 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 
 ############################################################
 #
-# Copyright 2010, 2011, 2012 Mohammed El-Afifi
+# Copyright 2010, 2011, 2012, 2013 Mohammed El-Afifi
 # This file is part of downloadRPM.
 #
 # downloadRPM is free software: you can redistribute it and/or modify
@@ -37,12 +37,15 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 #
 # author:       Mohammed Safwat (MS)
 #
-# environment:  KWrite 4.4.4, python 2.5.2, Fedora release 10 (Cambridge)
+# environment:  KWrite 4.4.4, python 2.5.2, Fedora release 10
+#               (Cambridge)
 #               Kate 3.3.3, python 2.5.2, Fedora release 10 (Cambridge)
 #               KWrite 4.5.5, python 2.7, Fedora release 14 (Laughlin)
 #               KWrite 4.6.5, python 2.7.1, Fedora release 15 (Lovelock)
 #               KWrite 4.7.4, python 2.7.2, Fedora release 16 (Verne)
 #               KWrite 4.8.1, python 2.7.2, Fedora release 16 (Verne)
+#               KWrite 4.10.5, python 2.7.2, Fedora release 19
+#               (Schrödinger’s Cat)
 #
 # notes:        This is a private program.
 #
@@ -162,7 +165,7 @@ def run(rpm_list_file, settings):
     ver_arch_sep = '.'
     out_file = getattr(settings, _OUT_OPT_VAR)
     wrt_permit = 'w'
-    res_file = open(out_file, wrt_permit) if out_file else sys.stdout
+    res_file = open(out_file, wrt_permit) if out_file else None
     file_ext = ".rpm"
     with open(rpm_list_file) as rpm_list:
         for rpm_info in rpm_list:
@@ -174,14 +177,16 @@ def run(rpm_list_file, settings):
 
                 name, arch, ver, repo = rpm_info.split()
                 ver = ver_filter.match(ver).group(1)
-                res_file.write(link_sep.join(
-                    url + url_sep + name + name_ver_sep + ver + ver_arch_sep +
-                    arch + file_ext for url in repo_map[repo]) + '\n')
+                print >> \
+                    res_file, link_sep.join(url + url_sep + name +
+                                            name_ver_sep + ver + ver_arch_sep +
+                                            arch + file_ext for url in
+                                            repo_map[repo])
 
             else:
                 debug("Empty line encountered!")
 
-    if out_file:
+    if res_file:
         res_file.close()
 
     info("Done!")
