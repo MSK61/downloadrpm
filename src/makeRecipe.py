@@ -51,6 +51,7 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 #
 ############################################################
 
+from itertools import imap
 import logging
 from logging import debug, info
 import re
@@ -149,7 +150,7 @@ def run(rpm_list_file, settings):
                 # Don't drop old repository links(if any) and strip /
                 # from URL's.
                 repo_map.setdefault(repo_info[0], []).extend(
-                    (url.rstrip(url_sep) for url in repo_urls))
+                    imap(lambda url: url.rstrip(url_sep), repo_urls))
 
             else:
                 debug("Empty line encountered!")
@@ -160,13 +161,9 @@ def run(rpm_list_file, settings):
     # filter to identify rpm package version correctly
     ver_filter = re.compile("(?:\d+:)?(.+)")
     link_sep = '\t'
-    # URL part separators
-    name_ver_sep = '-'
-    ver_arch_sep = '.'
     out_file = getattr(settings, _OUT_OPT_VAR)
     wrt_permit = 'w'
     res_file = open(out_file, wrt_permit) if out_file else None
-    file_ext = ".rpm"
     with open(rpm_list_file) as rpm_list:
         for rpm_info in rpm_list:
 
@@ -176,12 +173,12 @@ def run(rpm_list_file, settings):
             if rpm_info:  # Overlook empty lines.
 
                 name, arch, ver, repo = rpm_info.split()
-                ver = ver_filter.match(ver).group(1)
+                pkg_part = \
+                    "{}{}-{}.{}.rpm".format(
+                        url_sep, name, ver_filter.match(ver).group(1), arch)
                 print >> \
-                    res_file, link_sep.join(url + url_sep + name +
-                                            name_ver_sep + ver + ver_arch_sep +
-                                            arch + file_ext for url in
-                                            repo_map[repo])
+                    res_file, link_sep.join(
+                        imap(lambda url: url + pkg_part, repo_map[repo]))
 
             else:
                 debug("Empty line encountered!")
