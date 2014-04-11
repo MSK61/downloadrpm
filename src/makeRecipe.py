@@ -9,7 +9,7 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 
 ############################################################
 #
-# Copyright 2010, 2011, 2012, 2013 Mohammed El-Afifi
+# Copyright 2010, 2011, 2012, 2013, 2014 Mohammed El-Afifi
 # This file is part of downloadRPM.
 #
 # downloadRPM is free software: you can redistribute it and/or modify

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ############################################################
 #
-# Copyright 2010, 2011 Mohammed El-Afifi
+# Copyright 2010, 2011, 2014 Mohammed El-Afifi
 # This file is part of downloadRPM.
 #
 # downloadRPM is free software: you can redistribute it and/or modify
