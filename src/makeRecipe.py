@@ -96,7 +96,7 @@ def process_command_line(argv):
     if extra_args:
         parser.error('program takes exactly one RPM queue file; '
                      '{}.'.format(
-                     '"{}" ignored'.format(args[mandatory_args:]) if
+                     '"{}" ignored'.format(args[mandatory_args :]) if
                      extra_args > 0 else "none specified"))
 
     # further process settings
@@ -144,7 +144,7 @@ def run(rpm_list_file, settings):
 
                 # Remove end-of-line characters.
                 repo_info = line.split()
-                repo_urls = repo_info[1:]
+                repo_urls = repo_info[1 :]
                 debug("Found for repository %s URL's %s", repo_info[0],
                     repo_urls)
                 # Don't drop old repository links(if any) and strip /
