@@ -9,7 +9,7 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 
 ############################################################
 #
-# Copyright 2010, 2011, 2012, 2013, 2014 Mohammed El-Afifi
+# Copyright 2010, 2011, 2012, 2013, 2014, 2017 Mohammed El-Afifi
 # This file is part of downloadRPM.
 #
 # downloadRPM is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 # description:  creates a URL list for RPM pacakges as extracted from
 #               the given file
 #
-# author:       Mohammed Safwat (MS)
+# author:       Mohammed El-Afifi (ME)
 #
 # environment:  KWrite 4.4.4, python 2.5.2, Fedora release 10
 #               (Cambridge)
@@ -46,6 +46,8 @@ Usage: makeRecipe.py -r REPOFILE [-o URLFILE] QUEUEFILE
 #               KWrite 4.8.1, python 2.7.2, Fedora release 16 (Verne)
 #               KWrite 4.10.5, python 2.7.2, Fedora release 19
 #               (Schrödinger’s Cat)
+#               emacs 25.1.1, python 2.7.13, Fedora release 25 (Twenty
+#               Five)
 #
 # notes:        This is a private program.
 #
