@@ -58,8 +58,7 @@ import re
 import sys
 import optparse
 # command-line option variables
-# variable to receive the output file name
-_OUT_OPT_VAR = "out_file_name"
+_OUT_OPT_VAR = "out_file_name"  # variable to receive the output file name
 # variable to receive the repository-to-URL conversion file
 _REPO_OPT_VAR = "repo_file_name"
 
