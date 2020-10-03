@@ -139,7 +139,7 @@ def run(rpm_list_file, settings):
     with open(repo_file) as repo_map_file:
         for line in repo_map_file:
 
-            line = line.rstrip()
+            line = line.splitlines()[0]
 
             if line:  # Overlook empty lines.
 
@@ -168,7 +168,8 @@ def run(rpm_list_file, settings):
     with open(rpm_list_file) as rpm_list:
         for rpm_info in rpm_list:
 
-            rpm_info = rpm_info.rstrip()  # Remove end-of-line characters.
+            # Remove end-of-line characters.
+            rpm_info = rpm_info.splitlines()[0]
 
             if rpm_info:  # Overlook empty lines.
 
